@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Be My Valentine 💖</title>
+<style>
+* {
+    box-sizing: border-box;
+    font-family: "Segoe UI", sans-serif;
+}
+
+body {
+    margin: 0;
+    height: 100vh;
+    overflow: hidden;
+    background: linear-gradient(135deg, #ffd6e8, #ffeaf3);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Floating hearts / kisses */
+.heart {
+    position: absolute;
+    animation: float 8s linear infinite;
+    opacity: 0.8;
+}
+
+@keyframes float {
+    0% { transform: translateY(100vh) scale(1); opacity: 1; }
+    100% { transform: translateY(-10vh) scale(1.5); opacity: 0; }
+}
+
+/* Card */
+.card {
+    background: white;
+    padding: 45px 30px;   /* Padding */
+    width: 90%;
+    max-width: 500px;     /* Limit max width */
+    border-radius: 30px;
+    text-align: center;
+    box-shadow: 0 25px 50px rgba(0,0,0,0.2);
+    z-index: 10;
+    height: auto;
+    overflow: hidden;
+}
+
+.card img {
+    margin-bottom: 20px;
+    border-radius: 20px;
+}
+
+h2 {
+    font-size: 30px;
+    font-weight: 800;
+    color: #c9184a;
+}
+
+.name {
+    color: #ff4d6d;
+    text-shadow: 0 0 10px rgba(255,77,109,0.6);
+}
+
+p {
+    font-size: 18px;
+    color: #7a1f3d;
+    line-height: 1.6;
+    margin-bottom: 30px;
+}
+
+button {
+    border: none;
+    padding: 15px 38px;
+    font-size: 20px;
+    border-radius: 40px;
+    cursor: pointer;
+}
+
+#yes {
+    background: #ff4d6d;
+    color: white;
+    box-shadow: 0 10px 25px rgba(255,77,109,0.5);
+}
+
+#no {
+    background: #4db6ac; /* teal/light blue color */
+    color: white;
+    position: absolute;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+/* Celebration card styling */
+#celebrate {
+    display: none;
+    text-align: center;
+    z-index: 10;
+    background: white;
+    padding: 40px 30px;          /* slightly more padding for soft look */
+    width: 90%;
+    max-width: 500px;             /* same as original card */
+    border-radius: 40px;          /* more rounded corners */
+    box-shadow: 0 25px 50px rgba(0,0,0,0.2); /* soft shadow */
+    overflow: hidden;
+    margin: 0 auto;
+}
+
+#celebrate img {
+    display: block;         /* makes centering easier */
+    margin: 15px auto;      /* center horizontally with top/bottom margin */
+    width: 90%;             /* scale to fit card width */
+    max-width: 350px;       /* don’t exceed this width */
+    max-height: 300px;      /* don’t exceed this height */
+    height: auto;           /* maintain original aspect ratio */
+    object-fit: contain;    /* keep the full image, no cropping */
+    border-radius: 20px;    /* rounded corners */
+}
+
+#celebrate p {
+    font-size: 16px;          /* slightly smaller text */
+    color: #7a1f3d;
+    line-height: 1.5;
+    margin-top: 15px;
+    text-align: center;       /* center text inside card */
+}
+
+#celebrate h1 {
+    color: #c9184a; /* deep pink, matching your main palette */
+    font-size: 28px;
+    font-weight: 800;
+    margin-bottom: 20px;
+    text-shadow: 0 0 10px rgba(255,77,109,0.6); /* optional glow effect */
+}
+
+</style>
+</head>
+<body>
+
+<!-- Floating hearts -->
+<script>
+for (let i = 0; i < 40; i++) {
+    let h = document.createElement("div");
+    h.className = "heart";
+    h.innerHTML = "❤️";
+    h.style.left = Math.random() * 100 + "vw";
+    h.style.fontSize = (18 + Math.random() * 26) + "px";
+    h.style.animationDuration = (5 + Math.random() * 5) + "s";
+    document.body.appendChild(h);
+}
+</script>
+
+<div class="card" id="card">
+    <!-- Replaced original card image with GIF -->
+    <img src="love.gif" alt="Love GIF" width="200px">
+
+    <h2>
+        <span class="name">Rahul</span>, will you be my Valentine? 💘
+    </h2>
+
+    <p>
+        From the moment you came into my life, everything felt warmer, brighter and happier 💕
+        I can’t imagine this Valentine without you 🥰
+    </p>
+
+    <button id="yes">YES 💖</button>
+    <button id="no">NO 😜</button>
+</div>
+
+<div id="celebrate" class="card">
+    <h1>I LOVE YOU SO MUCH 💖<h1>
+    <!-- Square love picture inside the white card -->
+    <img src="pic1.jpeg" alt="Love Pic">
+
+    <!-- Personalized message -->
+    <p>
+        From the very first moment we met, I knew my life had changed forever. Every smile, every laugh, every little moment we share fills me with joy beyond words. 
+        You make even the simplest days feel magical, and your love gives me strength and happiness like nothing else in the world. 
+        I cherish every memory we've created together and look forward to countless more adventures, laughter, and quiet moments by your side. 
+        Thank you for being my partner, my best friend, and my everything. 💖🥰
+    </p>
+</div>
+
+<!-- Soft Music -->
+<audio id="music" src="perfect.mp3.mp3" loop></audio>
+
+<script>
+const noBtn = document.getElementById("no");
+const yesBtn = document.getElementById("yes");
+const card = document.getElementById("card");
+const celebrate = document.getElementById("celebrate");
+const music = document.getElementById("music");
+
+// Move NO button randomly
+noBtn.addEventListener("mouseover", () => {
+    noBtn.style.left = Math.random() * (window.innerWidth - 120) + "px";
+    noBtn.style.top = Math.random() * (window.innerHeight - 120) + "px";
+});
+
+// YES button click
+yesBtn.addEventListener("click", () => {
+    card.style.display = "none";
+    celebrate.style.display = "block";
+
+    // Play soft music with fade-in
+    music.volume = 0;
+    music.play();
+    let vol = 0;
+    let fade = setInterval(() => {
+        if(vol < 1){
+            vol += 0.02;
+            music.volume = vol;
+        } else {
+            clearInterval(fade);
+        }
+    }, 200);
+
+    // Flowing hearts/kisses on celebration page
+    for (let i = 0; i < 30; i++) {
+        let k = document.createElement("div");
+        k.className = "heart";
+        k.innerHTML = "❤️";
+        k.style.left = Math.random() * 100 + "vw";
+        k.style.fontSize = (20 + Math.random() * 20) + "px";
+        k.style.animationDuration = (4 + Math.random() * 4) + "s";
+        document.body.appendChild(k);
+    }
+});
+</script>
+
+</body>
+</html>
